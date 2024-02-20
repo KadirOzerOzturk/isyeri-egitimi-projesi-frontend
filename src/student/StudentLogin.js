@@ -1,5 +1,6 @@
 import React from 'react'
 import mainLogo from '../icons/gazi_university_logo.png';
+
 function StudentLogin() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-6 lg:px-8 font-roboto">
@@ -31,6 +32,7 @@ function StudentLogin() {
               <label for="password" className="block text-sm font-medium text-gray-700 ">Password</label>
               <div className="mt-1">
                 <input id="password" name="password" type="password" autocomplete="current-password" required className="p-2 border-2 border-opacity-70 w-full rounded-md" />
+                
               </div>
             </div>
 
@@ -55,5 +57,4 @@ function StudentLogin() {
 
   )
 }
-
 export default StudentLogin

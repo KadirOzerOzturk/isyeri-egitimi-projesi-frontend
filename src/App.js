@@ -12,6 +12,10 @@ import ComissionLogin from "./comission/ComissionLogin";
 import LecturerLogin from "./lecturer/LecturerLogin";
 import CompanyLogin from "./company/CompanyLogin";
 import KabulFormu from "./forms/KabulFormu";
+import CompanyProfile from "./company/CompanyProfile";
+import ApplyToCompany from "./student/ApplyToCompany";
+import EditProfile from "./student/EditProfile";
+import ChangePassword from "./common_pages/ChangePassword";
 
 function App() {
   return (
@@ -27,8 +31,12 @@ function App() {
           <Route path="/comission-login" element={<ComissionLogin />} />
           <Route path="/lecturer-login" element={<LecturerLogin />} />
           <Route path="/company-login" element={<CompanyLogin />} />
+          <Route path="/company-profile" element={<CompanyProfile />} />
+          <Route path="/apply-to-company" element={<ApplyToCompany />} /> 
+          <Route path='/edit-profile' element={<EditProfile />} /> 
           <Route path="*" element={<NoPage />} /> 
-
+          <Route path='/change-password' element={<ChangePassword />} /> 
+          
           {/* Formlar  */}
           <Route path="/kabul-formu" element={<KabulFormu />} /> 
 

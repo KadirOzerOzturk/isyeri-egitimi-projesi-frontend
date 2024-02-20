@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function NoPage() {
+  const navigate=useNavigate()
   return (
   
 <div class="bg-gray-200 w-full px-16 md:px-0 h-screen flex items-center justify-center font-roboto">
@@ -12,7 +14,7 @@ function NoPage() {
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
             </svg>
-            <span>Return Home</span>
+            <span onClick={()=>navigate('/')}>Return Home</span>
         </a>
     </div>
 </div>

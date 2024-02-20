@@ -1,24 +1,31 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import companies, { setCompanies } from '../store/companies';
+
+import { getCompaniesAsync } from '../store/companies';
 
 function ListCompanies() {
 
-  const [companies, setCompanies] = useState([])
+  const dispatch=useDispatch()
+  const {companies} = useSelector(state=>state.companies)
+  // useEffect(() => {
 
+  //   axios.get(`https://api.thecompaniesapi.com/v1/companies`)
+  //     .then(res => {
+
+  //       console.log(res.data.companies)
+  //       dispatch(setCompanies(res.data.companies))
+
+  //     })
+  //     .catch(error => {
+  //       console.error("Error fetching comp:", error);
+  //     });
+  // }, [])
   useEffect(() => {
-
-    axios.get(`https://api.thecompaniesapi.com/v1/companies`)
-      .then(res => {
-
-        console.log(res.data.companies)
-        setCompanies(res.data.companies);
-
-      })
-      .catch(error => {
-        console.error("Error fetching comp:", error);
-      });
-  }, [])
-
+    dispatch(getCompaniesAsync());
+  }, []);
+console.log(companies+' 111111')
   return (
     <div className='container mx-auto my-5 pl-24 pt-5 z-40 grid-cols-1 md:grid-cols-2 grid font-roboto'>
       {companies.map((company) => (
