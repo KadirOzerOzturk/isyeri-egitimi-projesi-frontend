@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import companies, { setCompanies } from '../store/companies';
 
 import { getCompaniesAsync } from '../store/companies';
+import { useNavigate } from 'react-router-dom';
+
 
 function ListCompanies() {
-
+  const navigate=useNavigate()
   const dispatch=useDispatch()
   const {companies} = useSelector(state=>state.companies)
   // useEffect(() => {
@@ -27,9 +29,12 @@ function ListCompanies() {
   }, []);
 console.log(companies+' 111111')
   return (
+    
     <div className='container mx-auto my-5 pl-24 pt-5 z-40 grid-cols-1 md:grid-cols-2 grid font-roboto'>
+                  
+
       {companies.map((company) => (
-        <ul className='p-2  '>
+        <ul onClick={()=> navigate(`/company-profile/${company.id}`)} className='p-2 cursor-pointer '>
 
 
           <li className="col-span-1 divide-y  border-2 divide-gray-200 rounded-lg bg-white shadow">
@@ -66,7 +71,6 @@ console.log(companies+' 111111')
           </li>
         </ul>
       ))}
-
     </div>
   )
 }

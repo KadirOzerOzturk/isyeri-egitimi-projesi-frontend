@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import mainLogo from '../icons/gazi_university_logo.png';
-import leftArrow from '../icons/arrow_back_left_icon.svg';
 import { FaUser, FaBuilding } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { IoIosMail, IoMdMenu } from "react-icons/io";
@@ -8,7 +7,6 @@ import { FaWpforms } from "react-icons/fa6";
 import { RiSurveyFill } from "react-icons/ri";
 import { FaAngleDoubleLeft } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
-import { getCompaniesAsync } from '../store/companies';
 
 
 function Sidebar() {

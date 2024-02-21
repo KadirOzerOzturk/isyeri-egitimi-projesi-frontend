@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CiEdit } from "react-icons/ci";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -6,25 +6,32 @@ import { useNavigate } from 'react-router-dom';
 
 function StudentProfile() {
 
-    const navigate= useNavigate()
-    const  {user}  = useSelector(state => state.auth);
-
+    const navigate = useNavigate()
+    const { user } = useSelector(state => state.auth);
+    const [cv, setCv] = useState()
     // Now you can use the user object here
     console.log(user);
-    return ( 
+    const handleCvInput = (e) => {
+        const { name, value } = e.target;
+        setCv({ [name]: value })
+        localStorage.setItem("cv", cv)
+
+    };
+
+    return (
 
         <div className="container mx-auto my-5 pl-24 pt-5 z-40 font-roboto ">
             <div className="md:flex no-wrap md:-mx-2 ">
-               
+
                 <div className="w-full md:w-3/12 md:mx-2">
-                    
+
                     <div className="bg-white p-3 border-t-4 border-dark-blue">
                         <div className="image h-24 w-24 overflow-hidden">
                             <img className="h-auto w-full rounded-full mx-auto "
                                 src={user.avatar}
-                                alt=""/>
+                                alt="" />
                         </div>
-                        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{user.firstname +" "+user.lastname } </h1>
+                        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{user.firstname + " " + user.lastname} </h1>
                         <h3 className="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
                         <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
                             consectetur adipisicing elit.
@@ -42,9 +49,9 @@ function StudentProfile() {
                             </li>
                         </ul>
                     </div>
-                  
+
                     <div className="my-4"></div>
-                
+
                     <div className="bg-white p-3 hover:shadow">
                         <div className="flex items-center space-x-3 font-semibold text-gray-900 text-xl leading-8">
                             <span className="text-dark-blue">
@@ -60,43 +67,43 @@ function StudentProfile() {
                             <div className="text-center my-2">
                                 <img className="h-16 w-16 rounded-full mx-auto"
                                     src="https://cdn.australianageingagenda.com.au/wp-content/uploads/2015/06/28085920/Phil-Beckett-2-e1435107243361.jpg"
-                                    alt=""/>
-                                    <a href="#" className="text-main-color">Kojstantin</a>
+                                    alt="" />
+                                <a href="#" className="text-main-color">Kojstantin</a>
                             </div>
                             <div className="text-center my-2">
                                 <img className="h-16 w-16 rounded-full mx-auto"
                                     src="https://avatars2.githubusercontent.com/u/24622175?s=60&amp;v=4"
-                                    alt=""/>
-                                    <a href="#" className="text-main-color">James</a>
+                                    alt="" />
+                                <a href="#" className="text-main-color">James</a>
                             </div>
-                            
+
                         </div>
                     </div>
-                
+
                 </div>
-              {/* hakkinda kismi */}
+                {/* hakkinda kismi */}
                 <div className="w-full md:w-9/12 mx-2 h-64">
-               
+
                     <div className="bg-white p-3 shadow-sm rounded-sm">
                         <div className='flex  justify-between'>
 
-                        
-                        <div className="flex items-center  space-x-2 font-semibold text-gray-900 leading-8">
-                            <span clas="text-dark-blue ">
-                                <svg className="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                </svg>
-                                
-                            </span>
-                            <span className="tracking-wide">Hakkinda</span>
-                            
-                        </div>
-                       <div onClick={()=> navigate('/edit-profile')} className='cursor-pointer bg-gray-100 p-1 rounded-lg flex justify-between items-center gap-2'>
-                       <span>Profili Duzenle</span>
-                        <CiEdit className='text-2xl' />
-                       </div>
+
+                            <div className="flex items-center  space-x-2 font-semibold text-gray-900 leading-8">
+                                <span clas="text-dark-blue ">
+                                    <svg className="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                    </svg>
+
+                                </span>
+                                <span className="tracking-wide">Hakkinda</span>
+
+                            </div>
+                            <div onClick={() => navigate('/edit-profile')} className='cursor-pointer bg-gray-100 p-1 rounded-lg flex justify-between items-center gap-2'>
+                                <span>Profili Duzenle</span>
+                                <CiEdit className='text-2xl' />
+                            </div>
 
                         </div>
                         <div className="text-gray-700">
@@ -137,13 +144,13 @@ function StudentProfile() {
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
-                  
+
 
                     <div className="my-4"></div>
 
-                   
+
                     <div className="bg-white p-3 shadow-sm rounded-sm">
 
                         <div className="grid grid-cols-2">
@@ -157,31 +164,25 @@ function StudentProfile() {
                                         </svg>
                                     </span>
                                     <span className="tracking-wide">Yetenekler </span>
+
+                                </div><ul className="list-inside space-y-2">
+                                {/* {user.skills.map((skill, index) => (
                                     
-                                </div>
-                                <ul className="list-inside space-y-2">
-                                    <li>
-                                        <div className="text-dark-blue">Java</div>
-                                        <div className="text-gray-500 text-xs">Iyi</div>
-                                    </li>
-                                    <li>
-                                        <div className="text-dark-blue">React</div>
-                                        <div className="text-gray-500 text-xs">Orta</div>
-                                    </li>
-                                    <li>
-                                        <div className="text-dark-blue">Tailwind CSS</div>
-                                        <div className="text-gray-500 text-xs">Orta</div>
-                                    </li>
-                                    <li>
-                                        <div className="text-dark-blue">PostgreSQL</div>
-                                        <div className="text-gray-500 text-xs">Orta</div>
-                                    </li>
+                                    <li key={index}>
+                                    <div className="text-dark-blue">{skill.skill} </div>
+                                    <div className="text-gray-500 text-xs">{skill.grade}</div>
+                                </li>
+                                ))} */}
+                                
+                                    
+                                    
                                 </ul>
                                 <p className="text-slate-500 text-sm pt-4"> *Seviye (Cok Az-Az-Orta-iyi-Cok iyi)</p>
                                 <p className="text-slate-500  pt-4">
                                     CV yeri
                                 </p>
-                                <input type='file' />
+                                <input type='file' name="cv" onChange={handleCvInput} />
+                                <p></p>
                             </div>
                             <div>
                                 <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">

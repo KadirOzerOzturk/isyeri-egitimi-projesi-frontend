@@ -1,11 +1,32 @@
 import React from 'react'
 import { CiEdit } from "react-icons/ci";
+import { useSelector } from 'react-redux';
+import { useLocation, useParams } from 'react-router-dom';
 
 function CompanyProfile() {
 
-    
+    const location = useLocation();
+  const {  pathname } = location;
+    const parts=pathname.split("/")
+    const companyId=parts[parts.length-1]
+const {companies} = useSelector(state=>state.companies)
+    const findCompanyById = (companies, companyId) => {
+        for (const company of companies) {
+            if (company.id === parseInt(companyId)) {
+                return company;
+            }
+        }
+        return null; // Eşleşen şirket bulunamadı
+    };
 
-  return (
+    
+    
+    const company = findCompanyById(companies,companyId);
+console.log(" company: ", company);
+  
+
+
+return (
     <div>
      <div className="container mx-auto my-5 pl-24 pt-5 z-40 font-roboto ">
             <div className="md:flex no-wrap md:-mx-2 ">
@@ -14,11 +35,11 @@ function CompanyProfile() {
                     
                     <div className="bg-white p-3 border-t-4 border-dark-blue">
                         <div className="image h-24 w-24 overflow-hidden">
-                            <img className="h-auto w-full mx-auto "
-                                src="https://www.havelsan.com.tr/content/images/uploads/logo-kapak,6224_medium.png"
+                            <img className="h-auto w-full mx-auto rounded-full "
+                                src={company.logo}
                                 alt=""/>
                         </div>
-                        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">Havelsan</h1>
+                        <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{company.name}</h1>
                         <h3 className="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
                         <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
                             consectetur adipisicing elit.
@@ -108,23 +129,23 @@ function CompanyProfile() {
                             <div className="grid md:grid-cols-2 text-sm">
                                 <div className="grid grid-cols-2">
                                     <div className="px-4 py-2 font-semibold">Sirket Adi</div>
-                                    <div className="px-4 py-2">HAVELSAN AŞ</div>
+                                    <div className="px-4 py-2">{company.name}</div>
                                 </div>
                                 <div className="grid grid-cols-2">
                                     <div className="px-4 py-2 font-semibold">Sektor</div>
-                                    <div className="px-4 py-2">Savunma Sanayi</div>
+                                    <div className="px-4 py-2">{company.industryMain}</div>
                                 </div>
                                 
                                 
                                 <div className="grid grid-cols-2">
                                     <div className="px-4 py-2 font-semibold">Address</div>
-                                    <div className="px-4 py-2">Mustafa Kemal Mahallesi Şehit Öğretmen Şenay Aybüke Yalçın Cad. No:39 P.K. : 06510 Çankaya/Ankara </div>
+                                    <div className="px-4 py-2">{company.city.address} </div>
                                 </div>
                             
                                 <div className="grid grid-cols-2">
-                                    <div className="px-4 py-2 font-semibold">Email</div>
+                                    <div className="px-4 py-2 font-semibold">Iletisim</div>
                                     <div className="px-4 py-2">
-                                        <a className="text-blue-800" href="mailto:jane@example.com">info@havelsan.com.tr</a>
+                                        <a className="text-blue-800" href=""> {company.phoneNumber}</a>
                                     </div>
                                 </div>
                                 

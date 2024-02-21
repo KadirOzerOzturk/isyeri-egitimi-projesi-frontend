@@ -31,7 +31,7 @@ function App() {
           <Route path="/comission-login" element={<ComissionLogin />} />
           <Route path="/lecturer-login" element={<LecturerLogin />} />
           <Route path="/company-login" element={<CompanyLogin />} />
-          <Route path="/company-profile" element={<CompanyProfile />} />
+          <Route path="/company-profile/:id" element={<CompanyProfile />} />
           <Route path="/apply-to-company" element={<ApplyToCompany />} /> 
           <Route path='/edit-profile' element={<EditProfile />} /> 
           <Route path="*" element={<NoPage />} /> 

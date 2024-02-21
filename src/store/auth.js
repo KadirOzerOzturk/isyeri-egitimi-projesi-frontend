@@ -12,7 +12,9 @@ const initialState={
         password:"Diamond0201",
         phone:"+90 (545) 657 77 27",
         address:"Cankaya/Ankara",
-        avatar:"https://pbs.twimg.com/media/DBtlktyXcAATi3S.jpg" 
+        avatar:"https://pbs.twimg.com/media/DBtlktyXcAATi3S.jpg",
+        // skills:[{'java':'cokiyi'}]
+        
     }
 }
 
