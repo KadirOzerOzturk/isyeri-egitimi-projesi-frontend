@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { CiEdit } from "react-icons/ci";
+import { FaUser } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,13 +12,7 @@ function StudentProfile() {
     const [cv, setCv] = useState()
     // Now you can use the user object here
     console.log(user);
-    const handleCvInput = (e) => {
-        const { name, value } = e.target;
-        setCv({ [name]: value })
-        localStorage.setItem("cv", cv)
-
-    };
-
+    
     return (
 
         <div className="container mx-auto my-5 pl-24 pt-5 z-40 font-roboto ">
@@ -90,11 +85,7 @@ function StudentProfile() {
 
                             <div className="flex items-center  space-x-2 font-semibold text-gray-900 leading-8">
                                 <span clas="text-dark-blue ">
-                                    <svg className="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                    </svg>
+                                <FaUser/> 
 
                                 </span>
                                 <span className="tracking-wide">Hakkinda</span>
@@ -181,7 +172,8 @@ function StudentProfile() {
                                 <p className="text-slate-500  pt-4">
                                     CV yeri
                                 </p>
-                                <input type='file' name="cv" onChange={handleCvInput} />
+                                
+                                <input type='file' name="cv"  />
                                 <p></p>
                             </div>
                             <div>

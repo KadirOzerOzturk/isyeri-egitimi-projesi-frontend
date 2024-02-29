@@ -16,12 +16,15 @@ import CompanyProfile from "./company/CompanyProfile";
 import ApplyToCompany from "./student/ApplyToCompany";
 import EditProfile from "./student/EditProfile";
 import ChangePassword from "./common_pages/ChangePassword";
+import ListStudentGroups from "./lecturer/ListStudentGroups";
+import ViewStudentProfile from "./common_pages/ViewStudentProfile";
+import ViewCompanyProfile from "./common_pages/ViewCompanyProfile";
 
 function App() {
   return (
     <div className="grid-cols-2">
       <Sidebar />
-      <div className="">
+      <div className="font-roboto">
         <Routes>
           <Route path="/" element={<LoginOptions />} />
           <Route path="/forms" element={<ListForms />} />
@@ -31,16 +34,18 @@ function App() {
           <Route path="/comission-login" element={<ComissionLogin />} />
           <Route path="/lecturer-login" element={<LecturerLogin />} />
           <Route path="/company-login" element={<CompanyLogin />} />
-          <Route path="/company-profile/:id" element={<CompanyProfile />} />
+          <Route path="/company-profile/:id" element={<ViewCompanyProfile   />} />
+          <Route path="/student-profile/:id" element={<ViewStudentProfile />} />
           <Route path="/apply-to-company" element={<ApplyToCompany />} /> 
           <Route path='/edit-profile' element={<EditProfile />} /> 
           <Route path="*" element={<NoPage />} /> 
           <Route path='/change-password' element={<ChangePassword />} /> 
+          <Route path='/student-group' element={<ListStudentGroups />} /> 
           
           {/* Formlar  */}
           <Route path="/kabul-formu" element={<KabulFormu />} /> 
 
-
+          
         </Routes>
       </div>
     </div>

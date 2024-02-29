@@ -30,11 +30,11 @@ function ListCompanies() {
 console.log(companies+' 111111')
   return (
     
-    <div className='container mx-auto my-5 pl-24 pt-5 z-40 grid-cols-1 md:grid-cols-2 grid font-roboto'>
+    <div className='container mx-auto my-5 pl-24 pt-5 z-40 grid-cols-1 md:grid-cols-2 grid '>
                   
 
       {companies.map((company) => (
-        <ul onClick={()=> navigate(`/company-profile/${company.id}`)} className='p-2 cursor-pointer '>
+        <ul key={company.id} onClick={()=> navigate(`/company-profile/${company.id}`)} className='p-2 cursor-pointer '>
 
 
           <li className="col-span-1 divide-y  border-2 divide-gray-200 rounded-lg bg-white shadow">

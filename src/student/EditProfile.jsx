@@ -2,13 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import ChangePassword from "../common_pages/ChangePassword";
 import { Toaster, toast } from 'sonner'
 export default function EditProfile() {
     const { user } = useSelector(state => state.auth);
     const dispatch = useDispatch()
     const [changedUser,setChangedUser]= useState({...user})
-
+    const [skill,setSkill]=useState()
 
     // Update the state when an input value changes
     const handleInputChange = (e) => {
@@ -23,17 +22,20 @@ export default function EditProfile() {
     //     console.log('email : ' + user.email)
     // };
     const navigate= useNavigate()
-      const handleFormSubmit = (e) => {
+
+    const handleFormSubmit = (e) => {
+        const { name, value } = e.target;
         toast.success('Bilgileriniz Guncellendi')
         e.preventDefault()
-       
+        dispatch(setUser({ ...user, [name]: value }))
 
-        dispatch(setUser(changedUser))
-         
-        
       };
+
+    const handleSkillUpdate=(e,skill)=>{
+        dispatch(setUser({ ...user, skill: skill }))
+    }
     return (
-        <form className="container mx-auto my-5 pl-24 pt-5 z-40 font-roboto ">
+        <form className="container mx-auto my-5 pl-24 pt-5 z-40  ">
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                     <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -189,7 +191,7 @@ export default function EditProfile() {
                         Yetenekler
                     </h2>
                     <p className="mt-1 text-sm leading-6 text-gray-600">
-                        
+                        {skill}
                     </p>
 
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -200,18 +202,20 @@ export default function EditProfile() {
                             >
                                 Yetenek 
                             </label>
-                            <div className="mt-2">
+                            <div className="mt-2 flex gap-4">
                                 <input
                                     type="text"
-                                    name="fname"
-                                    id="fname"
+                                    name="skill"
+                                    id="skill"
+                                    onChange={setSkill}
                                     autoComplete="given-name"
                                     className=" p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 // onChange={handleInputChange}
                                 />
+                                 <button onClick={()=>handleSkillUpdate(skill)} className="bg-slate-300 w-24 rounded-md">ekle</button>
                             </div>
                         </div>
-
+                       
                         <div className="sm:col-span-3">
                             <label
                                 htmlFor="last-name"
@@ -263,6 +267,7 @@ export default function EditProfile() {
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
                 <button
+                onClick={()=>navigate("/student-profile")}
                     type="button"
                     className="text-sm font-semibold leading-6 text-gray-900"
                 >

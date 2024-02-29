@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FormInput from '../components/FormInput'
 
 function KabulFormu() {
+    
     return (
         <div className='container mx-auto my-5 pl-24 pt-5 z-40  grid font-roboto'>
-            <h1 className='text-3xl pb-8 font-extrabold'>Kabul Formu</h1>
-
-            <div className='grid  grid-cols-1 md:grid-cols-2'>
+            <h1 className='text-2xl border-b-2 mb-6 pb-2 font-extrabold text-center'>Kabul Formu</h1>
+            
+            <div className='grid  grid-cols-1 text-md md:grid-cols-2'>
                 <FormInput Label="Adi Soyadi" isDisable={true} inputText={"Kadir Ozer Ozturk"} />
                 <FormInput Label="TC Kimlik No" isDisable={true} inputText={"40159701816"} />
 
@@ -41,8 +42,8 @@ function KabulFormu() {
             </div>
             <h1 className='py-6 font-extrabold text-lg'>İŞVEREN VEYA YETKİLİNİN </h1>
             <FormInput Label="Adi Soyadi" />
-            <FormInput Label="Gorevı" />
-            <FormInput Label="E-posta adresı" />
+            <FormInput Label="Gorevi" />
+            <FormInput Label="E-posta adresi" />
             <FormInput Label="Tarih" />
             <FormInput Label="Isveren S.G.K. Tescil No." />
 
