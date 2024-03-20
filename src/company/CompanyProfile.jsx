@@ -36,14 +36,12 @@ function CompanyProfile() {
                         <div className="bg-white p-3 border-t-4 border-dark-blue">
                             <div className="image h-24 w-24 overflow-hidden">
                                 <img className="h-auto w-full mx-auto rounded-full "
-                                    src={company.logo}
+                                    src={company?.firmaLogo}
                                     alt="" />
                             </div>
-                            <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{company.name}</h1>
+                            <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{company.firmaAd}</h1>
                             <h3 className="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
-                            <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit.
-                                Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt</p>
+                            <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">{company.firmaHakkinda}</p>
                             <ul
                                 className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                                 <li className="flex items-center py-3">
@@ -129,23 +127,23 @@ function CompanyProfile() {
                                 <div className="grid md:grid-cols-2 text-sm">
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Sirket Adi</div>
-                                        <div className="px-4 py-2">{company.name}</div>
+                                        <div className="px-4 py-2">{company.firmaAd}</div>
                                     </div>
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Sektor</div>
-                                        <div className="px-4 py-2">{company.industryMain}</div>
+                                        <div className="px-4 py-2">{company.firmaSektor}</div>
                                     </div>
 
 
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Address</div>
-                                        <div className="px-4 py-2">{company.city.address} </div>
+                                        <div className="px-4 py-2">{company.firmaAdres} </div>
                                     </div>
 
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Iletisim</div>
                                         <div className="px-4 py-2">
-                                            <a className="text-blue-800" href=""> {company.phoneNumber}</a>
+                                            <a className="text-blue-800" href=""> {company.firmaEposta}</a>
                                         </div>
                                     </div>
 

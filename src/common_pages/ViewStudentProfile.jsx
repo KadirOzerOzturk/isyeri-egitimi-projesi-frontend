@@ -4,16 +4,18 @@ import { CiEdit } from "react-icons/ci";
 import { FaUser } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import rektorluk from '../icons/gazi_rektorluk.jpg';
+
 
 function ViewStudentProfile() {
     const location = useLocation();
     const { pathname } = location;
     const parts = pathname.split("/")
-    const studentId = parts[parts.length - 1]
+    const studentNo = parts[parts.length - 1]
     const [student, setStudent] = useState();
 
     useEffect(() => {
-        axios.get(`https://jsonplaceholder.typicode.com/users/${studentId}`)
+        axios.get(`/student/${studentNo}`)
             .then(res => {
                 console.log(res.data);
                 setStudent(res.data);
@@ -21,20 +23,20 @@ function ViewStudentProfile() {
             .catch(error => {
                 console.error("Error fetching comp:", error);
             });
-    }, [studentId]);
+    }, [studentNo]);
 
     return (
         <div className="container mx-auto my-5 pl-24 pt-5 z-40 font-roboto">
             {student ? (
-                <div className="md:flex no-wrap md:-mx-2 ">
-                    <div className="w-full md:w-3/12 md:mx-2">
+                <div className=" no-wrap md:-mx-2 ">
+                    <div className="w-full ">
                         <div className="bg-white p-3 border-t-4 border-dark-blue">
                             <div className="image h-24 w-24 overflow-hidden">
-                                {/* <img className="h-auto w-full rounded-full mx-auto "
-                                    src={student.avatar}
-                                    alt="" /> */}
+                                 <img className="h-full w-full rounded-full mx-auto "
+                                    src={rektorluk}
+                                    alt="" />
                             </div>
-                            <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{student.name}</h1>
+                            <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{student.ogrenciAd + " "+ student.ogrenciSoyad}</h1>
                             <h3 className="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
                             <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
                                 consectetur adipisicing elit.
@@ -96,23 +98,23 @@ function ViewStudentProfile() {
                                 <div className="grid md:grid-cols-2 text-sm">
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Isim</div>
-                                        <div className="px-4 py-2">{student?.name}</div>
+                                        <div className="px-4 py-2">{student?.ogrenciAd}</div>
                                     </div>
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Soyisim</div>
-                                        <div className="px-4 py-2">{student?.lastname}</div>
+                                        <div className="px-4 py-2">{student?.ogrenciSoyad}</div>
                                     </div>
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Sinif</div>
-                                        <div className="px-4 py-2">3</div>
+                                        <div className="px-4 py-2">{student.ogrenciSinif}</div>
                                     </div>
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Telefon No:</div>
-                                        <div className="px-4 py-2">{student?.phone}</div>
+                                        <div className="px-4 py-2">{student?.ogrenciTelNo}</div>
                                     </div>
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Address</div>
-                                        <div className="px-4 py-2">{student.address.city} </div>
+                                        <div className="px-4 py-2">{student.ogrenciAdres} </div>
                                     </div>
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Permanant Address</div>
@@ -121,7 +123,7 @@ function ViewStudentProfile() {
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Email.</div>
                                         <div className="px-4 py-2">
-                                            <a className="text-blue-800" href="mailto ????????">{student.email}</a>
+                                            <a className="text-blue-800" href="mailto ????????">{student.ogrenciEposta}</a>
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-2">

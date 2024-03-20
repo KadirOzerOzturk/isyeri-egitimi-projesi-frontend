@@ -1,22 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
-    user:{
-        firstname:"Kadir Ozer",
-        lastname:"Ozturk",
-        agno:3.44,
-        grade:3,
-        tcno:40159701816,
-        studentNo:21181616039,
-        email:"oztrkkadirozer@gmail.com",
-        password:"Diamond0201",
-        phone:"+90 (545) 657 77 27",
-        address:"Cankaya/Ankara",
-        avatar:"https://pbs.twimg.com/media/DBtlktyXcAATi3S.jpg",
-        role:"LECTURER"
-        
-    }
+    user:localStorage.getItem("userData"),
+    userRole:localStorage.getItem("userRole")
 }
+
+
 
 const authSlice =createSlice({
     name: 'auth',
@@ -24,9 +13,17 @@ const authSlice =createSlice({
     reducers:{
         setUser:(state,action)=>{
             state.user=action.payload
-        }
+        },
+        setUserPhoto:(state,action)=>{
+            state.user.ogrenciFotograf=action.payload
+        },
+        logout:(state)=>{
+            state.user=null
+            localStorage.clear()
+        },
+    
     }
 })
 
-export const {setUser} =authSlice.actions
+export const {setUser,setUserPhoto,logout,setUserRole} =authSlice.actions
 export default authSlice.reducer

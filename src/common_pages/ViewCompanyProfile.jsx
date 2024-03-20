@@ -1,10 +1,14 @@
 import React from 'react'
+import { useEffect } from 'react';
 import { CiEdit } from "react-icons/ci";
 import { FaUser } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 
 function ViewCompanyProfile() {
+
+    const {user}=useSelector(state=>state.auth)
+    const {userRole}=useSelector(state=>state.auth)
 
     const location = useLocation();
     const { pathname } = location;
@@ -13,7 +17,7 @@ function ViewCompanyProfile() {
     const { companies } = useSelector(state => state.companies)
     const findCompanyById = (companies, companyId) => {
         for (const company of companies) {
-            if (company.id === parseInt(companyId)) {
+            if (company.firmaId === parseInt(companyId)) {
                 return company;
             }
         }
@@ -24,8 +28,7 @@ function ViewCompanyProfile() {
 
     const company = findCompanyById(companies, companyId);
     console.log(" company: ", company);
-
-
+    console.log("userRole"+userRole)
 
     return (
         <div>
@@ -37,14 +40,12 @@ function ViewCompanyProfile() {
                         <div className="bg-white p-3 border-t-4 border-dark-blue">
                             <div className="image h-24 w-24 overflow-hidden">
                                 <img className="h-auto w-full mx-auto rounded-full "
-                                    src={company.logo}
+                                    src={company?.firmaLogo}
                                     alt="" />
                             </div>
-                            <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{company.name}</h1>
+                            <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{company.firmaAd}</h1>
                             <h3 className="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
-                            <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit.
-                                Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt</p>
+                            <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">{company.firmaHakkinda}</p>
                             <ul
                                 className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                                 <li className="flex items-center py-3">
@@ -85,18 +86,7 @@ function ViewCompanyProfile() {
                                         alt="" />
                                     <a href="#" className="text-main-color">James</a>
                                 </div>
-                                <div className="text-center my-2">
-                                    <img className="h-16 w-16 rounded-full mx-auto"
-                                        src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
-                                        alt="" />
-                                    <a href="#" className="text-main-color">Natie</a>
-                                </div>
-                                <div className="text-center my-2">
-                                    <img className="h-16 w-16 rounded-full mx-auto"
-                                        src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/f04b52da-12f2-449f-b90c-5e4d5e2b1469_361x361.png"
-                                        alt="" />
-                                    <a href="#" className="text-main-color">Casey</a>
-                                </div>
+                                
                             </div>
                         </div>
 
@@ -117,33 +107,35 @@ function ViewCompanyProfile() {
                                     <span className="tracking-wide">Hakkinda</span>
 
                                 </div>
+                                {userRole==="STUDENT" && (
                                 <div className='flex justify-between items-center gap-2 bg-green-300 rounded-md py-1 px-2'>
                                     <span>Basvur</span>
                                     <CiEdit className='text-2xl' />
                                 </div>
+                                )}
 
                             </div>
                             <div className="text-gray-700">
                                 <div className="grid md:grid-cols-2 text-sm">
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Sirket Adi</div>
-                                        <div className="px-4 py-2">{company.name}</div>
+                                        <div className="px-4 py-2">{company.firmaAd}</div>
                                     </div>
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Sektor</div>
-                                        <div className="px-4 py-2">{company.industryMain}</div>
+                                        <div className="px-4 py-2">{company.firmaSektor}</div>
                                     </div>
 
 
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Address</div>
-                                        <div className="px-4 py-2">{company.city.address} </div>
+                                        <div className="px-4 py-2">{company.firmaAdres} </div>
                                     </div>
 
                                     <div className="grid grid-cols-2">
                                         <div className="px-4 py-2 font-semibold">Iletisim</div>
                                         <div className="px-4 py-2">
-                                            <a className="text-blue-800" href=""> {company.phoneNumber}</a>
+                                            <a className="text-blue-800" href=""> {company.firmaEposta}</a>
                                         </div>
                                     </div>
 
@@ -153,10 +145,9 @@ function ViewCompanyProfile() {
                         </div>
 
 
-                        <div className="my-4"></div>
 
 
-                        <div className="bg-white p-3 shadow-sm rounded-sm">
+                        <div className="bg-white p-3 my-4 shadow-sm rounded-sm">
 
                             <div className="grid grid-cols-2">
                                 <div>
@@ -204,7 +195,6 @@ function ViewCompanyProfile() {
                                             <div className="text-gray-500 text-xs">March 2020 - Now</div>
                                         </li>
                                     </ul>
-                                    <input type='file' />
                                 </div>
                             </div>
 

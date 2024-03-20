@@ -34,28 +34,28 @@ console.log(companies+' 111111')
                   
 
       {companies.map((company) => (
-        <ul key={company.id} onClick={()=> navigate(`/company-profile/${company.id}`)} className='p-2 cursor-pointer '>
+        <ul key={company.firmaId} onClick={()=> navigate(`/company-profile/${company.firmaId}`)} className='p-2 cursor-pointer '>
 
 
           <li className="col-span-1 divide-y  border-2 divide-gray-200 rounded-lg bg-white shadow">
             <div className="flex w-full items-center justify-between space-x-6 p-6">
               <div className="flex-1 truncate">
                 <div className="flex items-center space-x-3">
-                  <h3 className="truncate text-sm font-medium text-gray-900">{company.name}</h3>
+                  <h3 className="truncate text-sm font-medium text-gray-900">{company.firmaAd}</h3>
                 </div>
-                <p className="mt-1 truncate text-sm text-gray-500">{company.description}</p>
+                <p className="mt-1 truncate text-sm text-gray-500">{company.firmaHakkinda}</p>
               </div>
-              <img className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src={company.logo} alt="" />
+              <img className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src={company.firmaLogo} alt="" />
             </div>
             <div>
               <div className="-mt-px flex divide-x divide-gray-200">
                 <div className="flex w-0 flex-1">
-                  <a href="abuubaidah@example.com" className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
+                  <a href={company.firmaEposta} className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
                     <svg className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
                       <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
                     </svg>
-                    Email : {company.email}
+                    {company.firmaEposta}
                   </a>
                 </div>
                 <div className="-ml-px flex w-0 flex-1">

@@ -21,7 +21,7 @@ function ApplyToCompany() {
     const handleAddClick = (e, company) => {
         e.preventDefault();
         // Seçilen şirketin daha önce seçilip seçilmediğini kontrol et
-        if (!selectedCompanies.some(selectedCompany => selectedCompany.id === company.id)) {
+        if (!selectedCompanies.some(selectedCompany => selectedCompany.id === company.firmaId)) {
             setSelectedCompanies([...selectedCompanies, company]);
         }
         localStorage.setItem("selectedCompanies",selectedCompanies)
@@ -29,7 +29,7 @@ function ApplyToCompany() {
     };
 
     const handleRemoveClick = (companyId) => {
-        setSelectedCompanies(selectedCompanies.filter(company => company.id !== companyId));
+        setSelectedCompanies(selectedCompanies.filter(company => company.firmaId !== companyId));
     };
 
 
@@ -60,11 +60,11 @@ function ApplyToCompany() {
                                 <tbody  key={company.id}>
                                     <tr className="odd:bg-white  even:bg-gray-50  border-b ">
                                         
-                                        <th onClick={()=> navigate(`/company-profile/${company.id}`)} scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap hover:underline cursor-pointer ">
-                                            {company.name}
+                                        <th onClick={()=> navigate(`/company-profile/${company.firmaId}`)} scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap hover:underline cursor-pointer ">
+                                            {company.firmaAd}
                                         </th>
-                                        <td onClick={()=> navigate(`/company-profile/${company.id}`)} className="px-6 py-4  hover:underline cursor-pointer">
-                                            {company.email}
+                                        <td onClick={()=> navigate(`/company-profile/${company.firmaId}`)} className="px-6 py-4  hover:underline cursor-pointer">
+                                            {company.firmaEposta}
                                         </td>
                                         
 
@@ -102,13 +102,13 @@ function ApplyToCompany() {
                         </thead>
                         {selectedCompanies.length > 0 ? (
                             selectedCompanies.map((company) => (
-                                <tbody key={company.id}>
+                                <tbody key={company.firmaId}>
                                     <tr className="odd:bg-white  even:bg-gray-50  border-b ">
-                                        <th onClick={()=> navigate(`/company-profile/${company.id}`)} scope="row" className="px-6 py-4 font-medium hover:underline cursor-pointer text-gray-900 whitespace-nowrap ">
-                                            {company.name}
+                                        <th onClick={()=> navigate(`/company-profile/${company.firmaId}`)} scope="row" className="px-6 py-4 font-medium hover:underline cursor-pointer text-gray-900 whitespace-nowrap ">
+                                            {company.firmaAd}
                                         </th>
                                         <td onClick={()=> navigate(`/company-profile/${company.id}`)} className="px-6 py-4 hover:underline cursor-pointer">
-                                            {company.email}
+                                            {company.firmaEposta}
                                         </td>
 
 

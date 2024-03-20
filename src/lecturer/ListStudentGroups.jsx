@@ -10,7 +10,7 @@ function ListStudentGroups() {
     const [showTasks, setShowTasks] = useState()
     const navigate = useNavigate()
     useEffect(() => {
-        axios.get(`https://jsonplaceholder.typicode.com/users`)
+        axios.get(``)
             .then(res => {
                 console.log(res.data);
                 setStudents(res.data);

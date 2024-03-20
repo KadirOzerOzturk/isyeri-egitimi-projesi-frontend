@@ -19,10 +19,10 @@ export const {setCompanies} =companiesSlice.actions
 
 export const getCompaniesAsync = () => async dispatch => {
     try {
-        const response = await axios.get('https://api.thecompaniesapi.com/v1/companies');
-        console.log(response.data.companies + " asdasd")
-        dispatch(setCompanies(response.data.companies));
-        console.log(response.data.companies + " 22222")
+        const response = await axios.get('/company/allCompanies');
+        console.log(response.data + " asdasd")
+        dispatch(setCompanies(response.data));
+        console.log(response.data + " 22222")
 
     } catch (error) {
         console.log("Error fetching users:", error);

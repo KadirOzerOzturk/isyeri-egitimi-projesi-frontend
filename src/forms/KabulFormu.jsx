@@ -1,25 +1,26 @@
 import React, { useState } from 'react'
 import FormInput from '../components/FormInput'
+import { useSelector } from 'react-redux'
 
 function KabulFormu() {
-    
+    const {user}=useSelector(state=>state.auth)
     return (
         <div className='container mx-auto my-5 pl-24 pt-5 z-40  grid font-roboto'>
             <h1 className='text-2xl border-b-2 mb-6 pb-2 font-extrabold text-center'>Kabul Formu</h1>
             
             <div className='grid  grid-cols-1 text-md md:grid-cols-2'>
-                <FormInput Label="Adi Soyadi" isDisable={true} inputText={"Kadir Ozer Ozturk"} />
-                <FormInput Label="TC Kimlik No" isDisable={true} inputText={"40159701816"} />
+                <FormInput Label="Adi Soyadi" isDisable={true} inputText={user.ogrenciAd +" "+ user.ogrenciSoyad} />
+                <FormInput Label="TC Kimlik No" isDisable={true} inputText={user.ogrenciKimlikNo} />
 
-                <FormInput Label="Ogrenci No" isDisable={true} inputText={"1111111111"} />
-                <FormInput Label="Ogretim Yili" isDisable={true} inputText={"11/11/2024"} />
+                <FormInput Label="Ogrenci No" isDisable={true} inputText={user.ogrenciNo} />
+                <FormInput Label="Ogretim Yili" isDisable={true} inputText={"11/11/2024 veritabanina eklenecek"} />
 
-                <FormInput Label="E-posta Adresi" isDisable={true} inputText={"kadir@gmail.com"} />
-                <FormInput Label="Telefon No(GSM)" isDisable={true} inputText={"111111111"} />
+                <FormInput Label="E-posta Adresi" isDisable={true} inputText={user.ogrenciEposta} />
+                <FormInput Label="Telefon No(GSM)" isDisable={true} inputText={user.ogrenciTelNo} />
 
-                <FormInput Label="Akademik Birim" isDisable={true} inputText={"Teknoloji Fakultesi"} />
-                <FormInput Label="Önlisans/Lisans Programı " isDisable={true} inputText={"Bilgisayar Muhendisligi"} />
-                <FormInput Label="İkametgâh Adresi" isDisable={true} inputText={"Kirsehir/Merkez"} />
+                <FormInput Label="Akademik Birim" isDisable={true} inputText={user.ogrenciFakulte} />
+                <FormInput Label="Önlisans/Lisans Programı " isDisable={true} inputText={user.ogrenciBolum} />
+                <FormInput Label="İkametgâh Adresi" isDisable={true} inputText={"Kirsehir/Merkez veritabanina eklenecek "} />
             </div>
 
 
